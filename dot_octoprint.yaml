@@ -1,0 +1,98 @@
+accessControl:
+  enabled: false
+api:
+  key: 76A24BB04B2F4521801E9A3805E17C14
+appearance:
+  name: John's Prusa i3
+  navbar:
+  - settings
+  - systemmenu
+  - login
+feature: {}
+gcodeViewer: {}
+plugins:
+  _disabled:
+  - virtual_printer
+  discovery:
+    _config_version: null
+    httpPassword: null
+    httpUsername: null
+    model:
+      description: null
+      name: null
+      number: null
+      serial: null
+      url: null
+      vendor: null
+      vendorUrl: null
+    pathPrefix: null
+    publicHost: null
+    publicPort: null
+    upnpUuid: 08e1a4d7-252d-42a4-997e-11367b083fb6
+    zeroConf: []
+  pluginmanager:
+    dependency_links: false
+    hidden: []
+    pip: /usr/local/bin/pip
+    pip_args: null
+    repository: http://plugins.octoprint.org/plugins.json
+    repository_ttl: 1440
+  softwareupdate:
+    _config_version: 4
+    checks:
+      octoprint:
+        type: github_release
+printerParameters: {}
+printerProfiles:
+  defaultProfile:
+    axes:
+      e:
+        inverted: false
+        speed: 300
+      x:
+        inverted: false
+        speed: 6000
+      y:
+        inverted: false
+        speed: 6000
+      z:
+        inverted: false
+        speed: 200
+    color: default
+    extruder:
+      count: 1
+      nozzleDiameter: 0.4
+      offsets:
+      - - 0.0
+        - 0.0
+    heatedBed: true
+    id: _default
+    model: MakerFarm Prusa i3
+    name: John's i3
+    volume:
+      depth: 200.0
+      formFactor: rectangular
+      height: 200.0
+      origin: lowerleft
+      width: 200.0
+serial:
+  additionalPorts:
+  - /dev/ttyACM*
+  autoconnect: true
+  baudrate: 250000
+  port: /dev/ttyACM0
+  timeout: {}
+server:
+  commands: {}
+  firstRun: false
+  secretKey: 1NauU2erE8UR7WJKwNysv86Px6wFAqEd
+system: {}
+temperature:
+  profiles:
+  - bed: '120'
+    extruder: 210
+    name: ABS
+  - bed: 60
+    extruder: 180
+    name: PLA
+webcam: {}

@@ -1,0 +1,15 @@
+#! /bin/bash
+
+script_rel=`dirname $0`
+src_dir=$(cd $script_rel && pwd)
+
+echo "Mounting source directory ($src_dir) as /Octoprint"
+
+docker run -ti --rm --privileged \
+    -v /dev:/dev \
+    -v $src_dir:/Octoprint \
+    -v /root:/root \
+    -v /home:/home \
+    -v $src_dir/dot_octoprint:${HOME}/.octoprint \
+    -p 5000:5000 \
+    octoprint $*
