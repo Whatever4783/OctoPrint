@@ -1,0 +1,33 @@
+#! /bin/bash
+
+HOST=3dprinter.local
+PORT=5000
+
+script_dir=$(dirname $(readlink -f $0))
+APIKEY=$(awk '/key/ { print $2 }' $script_dir/dot_octoprint.yaml)
+
+function usage {
+	echo "Usage:"
+	echo "  $0 <filename.g>"
+	exit 1
+}
+
+if [ $# -lt 1 ]; then
+	usage
+fi
+
+localfile=$(readlink -f $1)
+
+if [ ! -e $localfile ]; then
+	echo "File not found: $localfile"
+	exit 1
+fi
+
+basefile=$(basename $localfile | sed 's/\.gcode$/.g/')
+
+echo "Uploading '$localfile' as '$basefile'"
+
+curl \
+     --header "X-Api-Key: $APIKEY" \
+     --form "file=@${localfile};filename=$basefile;type=application/octet-stream" \
+     http://${HOST}:${PORT}/api/files/sdcard

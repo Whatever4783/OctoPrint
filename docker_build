@@ -1,0 +1,6 @@
+#! /bin/bash
+
+script_dir=$(dirname $(readlink -f $0))
+cd $script_dir
+
+docker build --pull -t whatever4783/armhf-octoprint -f Dockerfile.armhf .

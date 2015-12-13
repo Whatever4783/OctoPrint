@@ -56,6 +56,11 @@ plugins:
     publicPort: null
     upnpUuid: 08e1a4d7-252d-42a4-997e-11367b083fb6
     zeroConf: []
+  octobullet:
+    access_token: FWIz9ymg322incT5pEBoOQeuFwWqxJZm
+    printDone:
+      body: '{file} finished printing in {elapsed_time}'
+      title: Print job finished
   pluginmanager:
     _config_version: null
     dependency_links: false
@@ -68,7 +73,6 @@ plugins:
     _config_version: 4
     checks:
       octoprint:
-        checkout_folder: null
         type: github_release
 printerParameters: {}
 printerProfiles:

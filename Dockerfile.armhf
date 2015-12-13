@@ -1,0 +1,30 @@
+FROM ioft/armhf-debian:jessie
+
+RUN sed 's/main/main non-free contrib/' /etc/apt/sources.list > /tmp/sources.list && \
+    mv /tmp/sources.list /etc/apt/sources.list && \
+    apt-get update && \
+    env DEBIAN_FRONTEND=noninteractive apt-get install -yq \
+        ca-certificates \
+        gcc \
+        libavahi-compat-libdnssd1 \
+        psmisc \
+        python-dev \
+        python-setuptools \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/* \
+    && easy_install pip pybonjour
+
+COPY . /OctoPrint
+WORKDIR /OctoPrint
+RUN python setup.py install
+
+#-- Install plugins
+RUN pip install \
+        https://github.com/OctoPrint/OctoPrint-Pushbullet/archive/master.zip \
+        https://github.com/AmedeeBulle/StatusLine/archive/master.zip \
+        https://github.com/BillyBlaze/OctoPrint-TouchUI/archive/master.zip
+
+EXPOSE 5000
+
+ENTRYPOINT ["/usr/local/bin/octoprint"]
+CMD ["--config", "/Octoprint/dot_octoprint.yaml", "--iknowwhatimdoing"]
