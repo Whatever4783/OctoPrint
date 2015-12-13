@@ -3,11 +3,37 @@ accessControl:
 api:
   key: 76A24BB04B2F4521801E9A3805E17C14
 appearance:
-  name: John's Prusa i3
+  color: blue
+  name: 3dprinter.local
   navbar:
   - settings
   - systemmenu
   - login
+controls:
+- children:
+  - commands:
+    - G28
+    - G29
+    - G0 X200 Y0 F6000
+    - M84
+    name: Home/level
+    type: commands
+  - commands:
+    - M140 S125
+    - G28 X Y
+    - G0 X200 F3000
+    - M84
+    name: Warmup
+    type: commands
+  - commands:
+    - M410
+    - G91
+    - G0 Z10
+    - M84
+    name: Abort
+    type: commands
+  name: Utility
+  type: section
 feature: {}
 gcodeViewer: {}
 plugins:
@@ -31,6 +57,7 @@ plugins:
     upnpUuid: 08e1a4d7-252d-42a4-997e-11367b083fb6
     zeroConf: []
   pluginmanager:
+    _config_version: null
     dependency_links: false
     hidden: []
     pip: /usr/local/bin/pip
@@ -41,6 +68,7 @@ plugins:
     _config_version: 4
     checks:
       octoprint:
+        checkout_folder: null
         type: github_release
 printerParameters: {}
 printerProfiles:
@@ -81,16 +109,18 @@ serial:
   autoconnect: true
   baudrate: 250000
   port: /dev/ttyACM0
-  timeout: {}
+  timeout:
+    communication: 60.0
 server:
   commands: {}
   firstRun: false
   secretKey: 1NauU2erE8UR7WJKwNysv86Px6wFAqEd
 system: {}
 temperature:
+  cutoff: 15
   profiles:
-  - bed: '120'
-    extruder: 210
+  - bed: '125'
+    extruder: '225'
     name: ABS
   - bed: 60
     extruder: 180
